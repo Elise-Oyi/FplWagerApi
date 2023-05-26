@@ -57,4 +57,3 @@ C:\Users\User\Desktop\HERITORS LAB\FPL\APP\FplWagerApi\obj\Debug\netcoreapp3.1\F
 C:\Users\User\Desktop\HERITORS LAB\FPL\APP\FplWagerApi\obj\Debug\netcoreapp3.1\FplWagerApi.pdb
 C:\Users\User\Desktop\HERITORS LAB\FPL\APP\FplWagerApi\obj\Debug\netcoreapp3.1\FplWagerApi.genruntimeconfig.cache
 C:\Users\User\Desktop\HERITORS LAB\FPL\APP\FplWagerApi\bin\Debug\netcoreapp3.1\System.Web.Cors.dll
-C:\Users\User\Desktop\HERITORS LAB\FPL\APP\FplWagerApi\obj\Debug\netcoreapp3.1\FplWagerApi.csproj.AssemblyReference.cache

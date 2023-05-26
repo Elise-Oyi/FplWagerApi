@@ -1,6 +1,7 @@
 ﻿using fplWagerApi.Models;
 using FplWagerApi.Data;
 using FplWagerApi.Models;
+using FplWagerApi.Models.DTO;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -84,6 +85,32 @@ namespace FplWagerApi.Controllers
         {
             var wagers = await _context.WagerList.Where(w => w.UserId == userId).ToListAsync();
             if (wagers == null) return BadRequest(new ProblemDetails { Title = "you do not have any wagers" });
+
+            return wagers;
+        }
+
+
+        //---get wagerList details by userId
+        [HttpGet("wager-detailsLists/{userId}")]
+        public async Task<ActionResult<List<Wagers>>> GetWagerListByUserId(int userId)
+        {
+            var wagers = await _context.WagerList
+                .Where(w => w.UserId == userId)
+                .Join(_context.Wagers,
+                    wagerList => wagerList.WagerId,
+                    wager => wager.WagerId,
+                    (wagerList, wager) => new Wagers
+                    {
+                        WagerId = wager.WagerId,
+                        WagerName = wager.WagerName,
+                        EntryToken = wager.EntryToken,
+                        IsStarted = wager.IsStarted,
+                        IsCompleted = wager.IsCompleted
+                    })
+                .ToListAsync();
+
+            if (wagers == null || wagers.Count == 0)
+                return BadRequest(new ProblemDetails { Title = "No wagers found for the user" });
 
             return wagers;
         }
