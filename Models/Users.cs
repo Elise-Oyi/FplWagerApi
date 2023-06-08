@@ -13,8 +13,8 @@ namespace fplWagerApi.Models
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [Column("fpl_id")]
 
+        [Column("fpl_id")]
         public int FplId { get; set; }
 
         [Column("fullname")]

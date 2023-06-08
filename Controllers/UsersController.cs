@@ -14,6 +14,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace FplWagerApi.Controllers
 {
     [Route("api/[controller]")]
@@ -74,8 +76,20 @@ namespace FplWagerApi.Controllers
             //    return Unauthorized(new ProblemDetails { Title = "invalid password" }); // Invalid password
             //}
 
+            var userId = user.Id; // Assuming the user ID is of type Guid or string
 
-             return Ok(user);
+            var cookieOptions = new CookieOptions
+            {
+                IsEssential = true,
+                Expires = DateTime.Now.AddDays(30),
+                HttpOnly = false,
+                SameSite = SameSiteMode.None,
+                Secure = true
+            };
+            Response.Cookies.Append("userId", userId.ToString(), cookieOptions);
+
+
+            return Ok(user);
         }
         
 
@@ -91,7 +105,7 @@ namespace FplWagerApi.Controllers
 
 
         //---get wagerList details by userId
-        [HttpGet("wager-detailsLists/{userId}")]
+        [HttpGet("wager-detailslists/{userId}")]
         public async Task<ActionResult<List<Wagers>>> GetWagerListByUserId(int userId)
         {
             var wagers = await _context.WagerList
@@ -116,6 +130,19 @@ namespace FplWagerApi.Controllers
         }
 
 
+
+        //---get User
+        [HttpGet("get-user/{userId}")]
+        public async Task<ActionResult<List<Users>>> GetUserById(int userId) 
+        {
+            var user = await _context.Users.Where(u => u.Id == userId).ToListAsync();
+            if (user == null) return BadRequest(new ProblemDetails { Title = "No user found" });
+
+            return user;
+
+        }
+
+
         //---updating users tokens
         [HttpPut("update-tokens")]
         public async Task<ActionResult> UpdateTokens(Users users)
@@ -123,7 +150,7 @@ namespace FplWagerApi.Controllers
             var user = await _context.Users.FindAsync(users.Id);
             if (user == null)
             {
-                return NotFound();
+                return NotFound(new ProblemDetails { Title = "No user found" });
             }
 
             user.Tokens = users.Tokens; // Update the tokens property
@@ -133,6 +160,16 @@ namespace FplWagerApi.Controllers
 
             return Ok(user);
         }
+
+
+
+
+
+
+
+
+
+
 
         // Helper method to hash the password using the salt
         private string HashPassword(string password, string salt)

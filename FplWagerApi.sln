@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32407.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FplWagerApi", "FplWagerApi.csproj", "{41DC2C1F-8DBD-4001-8ECC-A962BD086572}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "..\..\..\..\C#\PROJECTS\ShopMore\API\API.csproj", "{D0D1F31A-AC97-493D-A35F-59D3A58C6224}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{41DC2C1F-8DBD-4001-8ECC-A962BD086572}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41DC2C1F-8DBD-4001-8ECC-A962BD086572}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41DC2C1F-8DBD-4001-8ECC-A962BD086572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0D1F31A-AC97-493D-A35F-59D3A58C6224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0D1F31A-AC97-493D-A35F-59D3A58C6224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0D1F31A-AC97-493D-A35F-59D3A58C6224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0D1F31A-AC97-493D-A35F-59D3A58C6224}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

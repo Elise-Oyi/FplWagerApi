@@ -49,10 +49,19 @@ namespace fplWagerApi
             app.UseRouting();
 
             //----adding CORS
-            app.UseCors(builder => builder
-               .AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader());
+            //app.UseCors(builder => builder
+            //   .AllowAnyOrigin()
+            //   .AllowAnyMethod()
+            //   .AllowAnyHeader());
+
+            //----adding CORS
+            app.UseCors(opt =>
+            {
+                //opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
+                opt.WithHeaders("Accept", "Content-Type", "Authorization")
+                .WithMethods("GET", "POST", "PUT", "DELETE").AllowCredentials().WithOrigins("http://localhost:3000");
+
+            });
 
             app.UseAuthorization();
 
